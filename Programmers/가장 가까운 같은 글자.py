@@ -3,11 +3,11 @@ def solution(s):
     index_map = {}
     for idx, v in enumerate(s):
         if v not in index_map:
-            index_map[v] = idx
             answer.append(-1)
         else:
             answer.append(idx - index_map.pop(v))
-            index_map[v] = idx
+
+        index_map[v] = idx
 
     return answer
 
