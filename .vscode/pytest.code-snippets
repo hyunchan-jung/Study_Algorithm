@@ -1,0 +1,32 @@
+{
+	"Pytest snippet": {
+		"scope": "python",
+		"prefix": "snippet_pytest",
+		"body": [
+			"import importlib.util",
+			"from pathlib import Path\n",
+			"import pytest\n",
+			"test_file_name = '${TM_FILENAME}'",
+			"file_name = test_file_name.replace('_test', '')",
+			"module_name = Path(__file__).parent / file_name",
+			"spec = importlib.util.spec_from_file_location('module', module_name)",
+			"module = importlib.util.module_from_spec(spec)",
+			"spec.loader.exec_module(module)\n\n",
+			"@pytest.mark.parametrize(('${1:arg}', 'answer'), [",
+			"\t(),",
+			"])",
+			"def test_solution(${1:arg}, answer):",
+			"\tassert module.solution(${1:arg}) == answer\n\n",
+			"def test_timeout():",
+			"\timport time",
+			"\timport random\n",
+			"\t${1:arg} = random.randint(0, 1)\n",
+			"\ttic = time.time()",
+			"\tmodule.solution(${1:arg})",
+			"\ttoc = time.time()",
+			"\texec_time = toc - tic\n",
+			"\tassert exec_time < 0.1"
+		],
+		"description": "Test Code Snippet for python module in korean"
+	}
+}
